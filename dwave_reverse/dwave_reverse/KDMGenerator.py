@@ -5,17 +5,33 @@ Created on 30 nov 2021
 '''
 
 from xml.etree import ElementTree as ET
-from io import BytesIO
 import os
+import re
 
 class KDMGenerator(object):
     
     KDM_FOLDER = ("./kdm") 
     
+    id = 0
+    elementsMap = {}
+    
     def __init__(self):
         '''
         Constructor
         '''
+
+
+    def getId(self):
+        KDMGenerator.id += 1
+        return 'id.'+str(KDMGenerator.id)
+    
+    def resetId(self):
+        KDMGenerator.id = 0
+        elementsMap = {}
+        
+    def getElementId(self, element):
+        return self.elementsMap[element]
+        
 
 
     def indent(self, elem, level=0):
@@ -39,6 +55,7 @@ class KDMGenerator(object):
     def generateKDM(self, H, name):
         print (H)
         
+        self.resetId()
         
         if not os.path.isdir(KDMGenerator.KDM_FOLDER):
             os.makedirs(KDMGenerator.KDM_FOLDER)
@@ -57,23 +74,54 @@ class KDMGenerator(object):
         ET.register_namespace('kdm', 'http://www.omg.org/spec/KDM/20160201/kdm')
         
         segment = ET.fromstring('<kdm:Segment xmlns:kdm="http://www.omg.org/spec/KDM/20160201/kdm"></kdm:Segment>')
+        
 
         segment.set('name', name)
         for prefix, uri in ns.items():
             segment.set('xmlns:'+prefix, uri)
 
-        #segment = ET.Element("Segment")
-        codeModel = ET.SubElement(segment, "model", {'xmi:id':'id.0', 'xmi:type':'code:CodeModel'})
+        eId=self.getId();
+        codeModel = ET.SubElement(segment, "model", {'xmi:id':eId, 'xmi:type':'code:CodeModel'})
+        self.elementsMap[codeModel] = eId
         
-        codeAsembly = ET.SubElement(codeModel, "codeElement", {'xmi:id':'id.1', 'xmi:type':'code:CodeAsembly'})
+        eId=self.getId();
+        codeAsembly = ET.SubElement(codeModel, "codeElement", {'xmi:id':'id.'+eId, 'xmi:type':'code:CodeAsembly'})
+        self.elementsMap[codeAsembly] = eId
         
-        callableUnit = ET.SubElement(codeAsembly, "codeElement", {'xmi:id':'id.2', 'xmi:type':'code:CallableUnit', 'kind':'regular', 'name':'DWAVE_FUNCTION'})
+        eId=self.getId();
+        callableUnit = ET.SubElement(codeAsembly, "codeElement", {'xmi:id':eId, 'xmi:type':'code:CallableUnit', 'kind':'regular', 'name':'DWAVE_FUNCTION'})
+        self.elementsMap[callableUnit] = eId
         
-        ET.SubElement(callableUnit, "entryFlow", {'xmi:id':'id.3', 'to':'id.4', 'from':'id.2'})
+        eId=self.getId();
+        entryFlow = ET.SubElement(callableUnit, "entryFlow", {'xmi:id':eId, 'from':eId})
+        self.elementsMap[entryFlow] = eId
         
-        actionElement = ET.SubElement(callableUnit, "codeElement", {'xmi:id':'id.4', 'xmi:type':'action:ActionElement', 'kind':'compound', 'name':'H'}) 
+        eId=self.getId();
+        actionElement = ET.SubElement(callableUnit, "codeElement", {'xmi:id':eId, 'xmi:type':'action:ActionElement', 'kind':'compound', 'name':'H'}) 
+        self.elementsMap[actionElement] = eId
         
-        ET.SubElement(actionElement, "source", {'xmi:id':'id.5', 'snippet':str(H)})
+        entryFlow.set('to', self.getElementId(actionElement))
+        
+        eId=self.getId();
+        source = ET.SubElement(actionElement, "source", {'xmi:id':eId, 'snippet':str(H)})
+        self.elementsMap[source] = eId
+        
+        
+        h = str(H.split("=")[0])
+        print(h)
+        exp = str(H.split("=")[1])
+        
+        sums = re.split(r'\+|-',  exp)
+        for s in sums:            
+            if exp.find(s) == 0:
+                operator='+'
+            else:
+                operator = exp[exp.find(s)-1:exp.find(s)]
+            print('\t' + operator)
+            
+            terms = s.split('*')
+            for t in terms:
+                print('\t\t'+t)
 
 
         KDMGenerator().indent(segment)
@@ -87,7 +135,7 @@ class KDMGenerator(object):
         
         
 def main():
-    KDMGenerator().generateKDM('H=1*b+1*k+2*a*c-2*a*k-2*b*c0', 'test')
+    KDMGenerator().generateKDM('H=1*b+1*k+2*a*c-2*a*k-2*b*c', 'test')
     
 
 main()
