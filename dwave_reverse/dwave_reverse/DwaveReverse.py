@@ -6,6 +6,7 @@ Created on 22 nov 2021
 
 import sys
 import inspect
+import linecache
 from matplotlib.mathtext import math_to_image
 import os
 
@@ -27,8 +28,10 @@ class DwaveReverse(object):
         '''
         Constructor
         '''
+        self.lastframe = None
 
     
+    @staticmethod
     def quboToH(Q, name):
         H = r'$\mathrm{H='
         first = True
@@ -59,17 +62,20 @@ class DwaveReverse(object):
     
    
     # sample in dimod
+    @staticmethod
     def getQfromBQM (vars):
         bqm = vars['bqm']
         Q = bqm.to_qubo()
         return Q
        
     # sample_qubo in dwave
+    @staticmethod
     def getQfromTupleWithoutOffset(vars):  
         Q = (vars['Q'], 0)
         return Q
     
     # sample_ising in dimod
+    @staticmethod
     def getQfromIsing (vars):
         h = vars['h']
         J = vars['J']
@@ -81,22 +87,37 @@ class DwaveReverse(object):
         #Q = bqm.to_qubo()
         return Q
     
-    
+    @staticmethod
     def getQ(function, vars):
         
         Q = function(vars)
         return Q
 
-    
+    @staticmethod
     def traceit(frame, event, arg):
         function_code = frame.f_code
         function_name = function_code.co_name
         lineno = frame.f_lineno
         vars = frame.f_locals
         
+        
+        # if event == 'line':
+        #     lineno = frame.f_lineno
+        #     filename = frame.f_globals["__file__"]
+        #     if filename == "<stdin>":
+        #         filename = "traceit.py"
+        #     if (filename.endswith(".pyc") or
+        #         filename.endswith(".pyo")):
+        #         filename = filename[:-1]
+        #     name = frame.f_globals["__name__"]
+        #     line = linecache.getline(filename, lineno)
+        #     print ('{}:{}:{} {}'.format(name,  lineno, frame.f_code.co_name , line.rstrip()))
+        
         if event == 'call':
             
+            
             trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno) + "_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+            #print(trace_name);
             
             Q = None
             
