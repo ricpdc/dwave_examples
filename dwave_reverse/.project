@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>dwave_examples</name>
+	<name>dwave_reverse</name>
 	<comment></comment>
 	<projects>
-		<project>dwave_reverse</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

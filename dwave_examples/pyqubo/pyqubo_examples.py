@@ -27,13 +27,13 @@ qubo, offset = model.to_qubo()
 
 pp = pprint.PrettyPrinter()
 
-print('\n ONE \n');
+print('\n QUBO MODEL FROM SPIN \n');
 pp.pprint(qubo)  # doctest: +SKIP
 print(offset)
 
 
 
-print('\n TWO \n');
+print('\n ISSING MODEL\n');
 linear, quadratic, offset = model.to_ising()
 pp.pprint(linear) # doctest: +SKIP
 pp.pprint(quadratic)
@@ -41,13 +41,15 @@ print(offset)
 
 
 
-print('\n THREE \n');
+print('\n QUBO MODEL FROM BINARY \n');
 
 x1, x2 = Binary('x1'), Binary('x2')
 H = 2*x1*x2 + 3*x1
 pp.pprint(H.compile().to_qubo())
 
 
+
+print('\n Solve QUBO by dimod Sampler \n');
 '''Solve QUBO by dimod Sampler'''
 model = H.compile()
 bqm = model.to_bqm() 

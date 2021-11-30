@@ -22,6 +22,15 @@
 # Import the functions and packages that are used
 from dwave.system import EmbeddingComposite, DWaveSampler
 
+
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
+
+
+
 # Define the problem as two Python dictionaries:
 #   h for linear terms, J for quadratic terms
 h = {}
@@ -34,6 +43,6 @@ sampler = EmbeddingComposite(DWaveSampler())
 
 # Run the problem on the sampler and print the results
 sampleset = sampler.sample_ising(h, J,
-                                 num_reads = 10,
+                                 num_reads = 3,
                                  label='Example - Simple Ocean Programs: Ising')
 print(sampleset)
