@@ -49,7 +49,7 @@ class DwaveReverse(object):
             else:
                 H += ('*'.join(pair).lower())
         
-        H += (("+" if Q[1]>0 else "") + str(Q[1]))
+        H += (("+" + str(Q[1])) if Q[1]>0 else "")
         
         return H; 
     
