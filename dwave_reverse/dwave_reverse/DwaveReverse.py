@@ -13,6 +13,7 @@ import os
 
 from datetime import datetime
 from dimod import utilities
+from dwave_reverse.KDMGenerator import KDMGenerator
 
 
 
@@ -30,10 +31,10 @@ class DwaveReverse(object):
         '''
         self.lastframe = None
 
-    
+
     @staticmethod
-    def quboToH(Q, name):
-        H = r'$\mathrm{H='
+    def quboToH(Q):
+        H = 'H='
         first = True
         
         for pair in Q[0]:                    
@@ -42,24 +43,29 @@ class DwaveReverse(object):
             if not first and Q[0][pair] > 0:
                 H += '+'
             first = False      
-            H += ('' + str(Q[0][pair]) + " \cdot ")                 
+            H += ('' + str(Q[0][pair]) + "*")                 
             if pair[0] == pair[1]:
                 H += (str(pair[0]).lower())
             else:
-                H += (' \cdot '.join(pair).lower())
+                H += ('*'.join(pair).lower())
         
         H += (("+" if Q[1]>0 else "") + str(Q[1]))
         
-        H += '}$'
-                  
-                  
-                  
+        return H; 
+    
+    @staticmethod
+    def generateHinMathPlot(H, name):
+        H = str(H)
+        H = H.replace('*', ' \cdot ', -1)
+        H = r'$\mathrm{' + H + '}$'
+        
         if not os.path.isdir(DwaveReverse.IMG_FOLDER):
             os.makedirs(DwaveReverse.IMG_FOLDER)
          
         math_to_image(H, DwaveReverse.IMG_FOLDER+"/"+name+".png", dpi=300, format='png')
-        return H; 
-    
+        
+        return H
+
    
     # sample in dimod
     @staticmethod
@@ -116,7 +122,8 @@ class DwaveReverse(object):
         if event == 'call':
             
             
-            trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno) + "_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+            #trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno) + "_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+            trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno)
             #print(trace_name);
             
             Q = None
@@ -130,8 +137,10 @@ class DwaveReverse(object):
             
             
             if Q is not None:
-                H = DwaveReverse.quboToH(Q, trace_name);
-                print(H);
+                H = DwaveReverse.quboToH(Q)
+                KDMGenerator().generateKDM(H, trace_name)
+                H = DwaveReverse.generateHinMathPlot(H, trace_name)
+                print(H)
             # else:
             #     source_lines, starting_line_no = inspect.getsourcelines(frame.f_code)
             #     loc = f"{function_name}:{lineno} {source_lines[lineno - starting_line_no].rstrip()}"

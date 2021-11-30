@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kdm:Segment xmlns:kdm="http://www.omg.org/spec/KDM/20160201/kdm" name="test" xmlns:action="http://www.omg.org/spec/KDM/20160201/action" xmlns:code="http://www.omg.org/spec/KDM/20160201/code" xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+  <model xmi:id="id.0" xmi:type="code:CodeModel">
+    <codeElement xmi:id="id.1" xmi:type="code:CodeAsembly">
+      <codeElement kind="regular" name="DWAVE_FUNCTION" xmi:id="id.2" xmi:type="code:CallableUnit">
+        <entryFlow from="id.2" to="id.4" xmi:id="id.3" />
+      <codeElement kind="compound" name="H" xmi:id="id.4" xmi:type="action:ActionElement">
+          <source snippet="H=1*b+1*k+2*a*c-2*a*k-2*b*c0" xmi:id="id.5" />
+        </codeElement>
+      </codeElement>
+    </codeElement>
+  </model>
+</kdm:Segment>
