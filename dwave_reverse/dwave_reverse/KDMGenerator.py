@@ -27,10 +27,17 @@ class KDMGenerator(object):
     
     def resetId(self):
         KDMGenerator.id = 0
-        elementsMap = {}
+        self.elementsMap = {}
         
     def getElementId(self, element):
         return self.elementsMap[element]
+    
+    def getElementByName(self, name):
+        
+        for key in self.elementsMap:
+            if 'name' in key.attrib.keys() and key.attrib['name'] == name:
+                return key
+        return None
         
 
 
@@ -111,18 +118,79 @@ class KDMGenerator(object):
         print(h)
         exp = str(H.split("=")[1])
         
+        
+        accumulatedSum = ''
+        partialSum = None
+        totalSum = None
+        
+        
         sums = re.split(r'\+|-',  exp)
-        for s in sums:            
+        for s in sums:  
+            
             if exp.find(s) == 0:
                 operator='+'
             else:
                 operator = exp[exp.find(s)-1:exp.find(s)]
             print('\t' + operator)
+
+            eId=self.getId();
+            actionElementMultiply = ET.SubElement(actionElement, "codeElement", {'xmi:id':eId, 'xmi:type':'action:ActionElement', 'kind':'Multiply', 'name':str(s)})
+            self.elementsMap[actionElementMultiply] = eId
+
             
             terms = s.split('*')
             for t in terms:
                 print('\t\t'+t)
+                
+                term = self.getElementByName(str(t))
+                
+                if term is None:
+                    eId=self.getId();
+                    term = ET.SubElement(actionElement, "codeElement", {'xmi:id':eId, 'xmi:type':('code:Value' if terms.index(t) == 0 else 'code:StorableUnit'), 'name':str(t)})
+                    self.elementsMap[term] = eId
 
+                eId=self.getId();
+                reads = ET.SubElement(actionElementMultiply, "codeElement", {'xmi:id':eId, 'xmi:type':'action:Reads', 'from': self.getElementId(actionElementMultiply), 'to':self.getElementId(term)})
+                self.elementsMap[reads] = eId
+            
+            
+            eId=self.getId();
+            storableUnitMult = ET.SubElement(actionElement, "codeElement", {'xmi:id':eId, 'xmi:type':'code:StorableUnit', 'kind':'register', 'name':'multiply_'+str(s)})
+            self.elementsMap[storableUnitMult] = eId
+            partialSum = storableUnitMult
+            
+            eId=self.getId();
+            writes = ET.SubElement(actionElementMultiply, "codeElement", {'xmi:id':eId, 'xmi:type':'action:Writes', 'from': self.getElementId(actionElementMultiply), 'to':self.getElementId(storableUnitMult)})
+            self.elementsMap[writes] = eId   
+            
+            accumulatedSum += operator + str(s)
+            
+            if sums.index(s) == 0:
+                totalSum = partialSum
+                continue
+
+            
+            eId=self.getId();
+            actionElementSum = ET.SubElement(actionElement, "codeElement", {'xmi:id':eId, 'xmi:type':'action:ActionElement', 'kind':('Add' if operator == '+' else 'Subtract'), 'name':accumulatedSum})
+            self.elementsMap[actionElementSum] = eId
+            
+            eId=self.getId();
+            readsSum1 = ET.SubElement(actionElementSum, "codeElement", {'xmi:id':eId, 'xmi:type':'action:Reads', 'from': self.getElementId(actionElementSum), 'to':self.getElementId(totalSum)})
+            self.elementsMap[readsSum1] = eId
+            
+            eId=self.getId();
+            readsSum2 = ET.SubElement(actionElementSum, "codeElement", {'xmi:id':eId, 'xmi:type':'action:Reads', 'from': self.getElementId(actionElementSum), 'to':self.getElementId(partialSum)})
+            self.elementsMap[readsSum2] = eId
+            
+            eId=self.getId();
+            storableUnitSum = ET.SubElement(actionElement, "codeElement", {'xmi:id':eId, 'xmi:type':'code:StorableUnit', 'kind':'register', 'name':'accumulated_'+accumulatedSum})
+            self.elementsMap[storableUnitSum] = eId
+            totalSum = storableUnitSum
+            
+            eId=self.getId();
+            writesSum = ET.SubElement(actionElementSum, "codeElement", {'xmi:id':eId, 'xmi:type':'action:Writes', 'from': self.getElementId(actionElementSum), 'to':self.getElementId(storableUnitSum)})
+            self.elementsMap[writesSum] = eId 
+                
 
         KDMGenerator().indent(segment)
 
