@@ -131,7 +131,7 @@ class KDMGenerator(object):
                 operator='+'
             else:
                 operator = exp[exp.find(s)-1:exp.find(s)]
-            print('\t' + operator)
+            #print('\t' + operator)
 
             eId=self.getId();
             actionElementMultiply = ET.SubElement(actionElement, "codeElement", {'xmi:id':eId, 'xmi:type':'action:ActionElement', 'kind':'Multiply', 'name':str(s)})
@@ -140,7 +140,7 @@ class KDMGenerator(object):
             
             terms = s.split('*')
             for t in terms:
-                print('\t\t'+t)
+                #print('\t\t'+t)
                 
                 term = self.getElementByName(str(t))
                 
@@ -196,7 +196,6 @@ class KDMGenerator(object):
 
         tree = ET.ElementTree(segment)
         
-        print(segment)
         
         tree.write(fileName, encoding='utf-8', xml_declaration=True)
         
