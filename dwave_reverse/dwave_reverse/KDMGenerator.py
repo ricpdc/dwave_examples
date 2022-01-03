@@ -5,6 +5,7 @@ Created on 30 nov 2021
 '''
 
 from xml.etree import ElementTree as ET
+from lxml import etree
 import os
 import re
 
@@ -38,25 +39,13 @@ class KDMGenerator(object):
             if 'name' in key.attrib.keys() and key.attrib['name'] == name:
                 return key
         return None
-        
 
-
-    def indent(self, elem, level=0):
-        i = "\n" + level*"  "
-        j = "\n" + (level-1)*"  "
-        if len(elem):
-            if not elem.text or not elem.text.strip():
-                elem.text = i + "  "
-            if not elem.tail or not elem.tail.strip():
-                elem.tail = i
-            for subelem in elem:
-                KDMGenerator().indent(subelem, level+1)
-            if not elem.tail or not elem.tail.strip():
-                elem.tail = j
-        else:
-            if level and (not elem.tail or not elem.tail.strip()):
-                elem.tail = j
-        return elem
+    
+    def prettyPrintXml(self, xmlFilePathToPrettyPrint):
+        assert xmlFilePathToPrettyPrint is not None
+        parser = etree.XMLParser(resolve_entities=False, strip_cdata=False)
+        document = etree.parse(xmlFilePathToPrettyPrint, parser)
+        document.write(xmlFilePathToPrettyPrint, pretty_print=True, encoding='utf-8')
     
     
     def generateKDM(self, H, name):
@@ -192,12 +181,12 @@ class KDMGenerator(object):
             self.elementsMap[writesSum] = eId 
                 
 
-        KDMGenerator().indent(segment)
-
         tree = ET.ElementTree(segment)
         
-        
         tree.write(fileName, encoding='utf-8', xml_declaration=True)
+        
+        self.prettyPrintXml(fileName)
+        
         
         
         
