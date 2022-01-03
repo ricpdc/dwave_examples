@@ -31,13 +31,11 @@ class DwaveReverse(object):
         '''
         self.lastframe = None
 
-
     @staticmethod
     def quboToH(Q):
         H = 'H='
         first = True
-        
-        for pair in Q[0]:                    
+        for pair in Q[0]: 
             if Q[0][pair] == 0:
                 continue
             if not first and Q[0][pair] > 0:
@@ -48,8 +46,7 @@ class DwaveReverse(object):
                 H += (str(pair[0]).lower())
             else:
                 H += ('*'.join(pair).lower())
-        
-        H += (("+" + str(Q[1])) if Q[1]>0 else "")
+        H += (("+" + str(Q[1])) if Q[1] > 0 else "")
         
         return H; 
     
@@ -69,35 +66,35 @@ class DwaveReverse(object):
    
     # sample in dimod
     @staticmethod
-    def getQfromBQM (vars):
+    def getQUBOfromBQM (vars):
         bqm = vars['bqm']
-        Q = bqm.to_qubo()
-        return Q
+        QUBO = bqm.to_qubo()
+        return QUBO
        
     # sample_qubo in dwave
     @staticmethod
-    def getQfromTupleWithoutOffset(vars):  
-        Q = (vars['Q'], 0)
-        return Q
+    def getQUBOfromTupleWithoutOffset(vars):  
+        QUBO = (vars['Q'], 0)
+        return QUBO
     
     # sample_ising in dimod
     @staticmethod
-    def getQfromIsing (vars):
+    def getQUBOfromIsing (vars):
         h = vars['h']
         J = vars['J']
         print(h)
         print(J)
         
-        Q = utilities.ising_to_qubo(h, J, 0);
-        print(Q)
-        #Q = bqm.to_qubo()
-        return Q
+        QUBO = utilities.ising_to_qubo(h, J, 0);
+        print(QUBO)
+        # Q = bqm.to_qubo()
+        return QUBO
     
     @staticmethod
-    def getQ(function, vars):
+    def getQUBO(function, vars):
         
-        Q = function(vars)
-        return Q
+        QUBO = function(vars)
+        return QUBO
 
     @staticmethod
     def traceit(frame, event, arg):
@@ -126,18 +123,18 @@ class DwaveReverse(object):
             trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno)
             #print(trace_name);
             
-            Q = None
+            QUBO = None
             
             if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__.__contains__("dimod"):
-                Q = DwaveReverse.getQ(DwaveReverse.getQfromBQM, vars)
+                QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromBQM, vars)
             elif frame.f_code.co_name in ('sample_qubo', ) and vars['self'].__class__.__module__.__contains__("dwave"):
-                Q = DwaveReverse.getQ(DwaveReverse.getQfromTupleWithoutOffset, vars)
+                QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromTupleWithoutOffset, vars)
             elif frame.f_code.co_name in ('sample_ising', ) and vars['self'].__class__.__module__.__contains__("dwave"):
-                Q = DwaveReverse.getQ(DwaveReverse.getQfromIsing, vars)
+                QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromIsing, vars)
             
             
-            if Q is not None:
-                H = DwaveReverse.quboToH(Q)
+            if QUBO is not None:
+                H = DwaveReverse.quboToH(QUBO)
                 KDMGenerator().generateKDM(H, trace_name)
                 H = DwaveReverse.generateHinMathPlot(H, trace_name)
                 print(H)
