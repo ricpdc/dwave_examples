@@ -43,11 +43,18 @@ class DwaveReverse(object):
             first = False      
             H += ('' + str(Q[0][pair]) + "*")                 
             if pair[0] == pair[1]:
-                H += (str(pair[0]).lower())
+                if isinstance(pair[0], str):
+                    H += (str(pair[0]).lower())
+                else:
+                    H += ('a' + str(pair[0]))
             else:
-                H += ('*'.join(pair).lower())
+                if isinstance(pair[0], str):
+                    H += ('*'.join(pair).lower())
+                else:
+                    H += ('a' + str(pair[0]) + '*a' + str(pair[1]))
         H += (("+" + str(Q[1])) if Q[1] > 0 else "")
         
+        print(H)
         return H; 
     
     @staticmethod
