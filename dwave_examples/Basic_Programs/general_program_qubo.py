@@ -44,6 +44,6 @@ sampler = EmbeddingComposite(DWaveSampler())
 
 # Run the problem on the sampler and print the results
 sampleset = sampler.sample_qubo(problemDefinition(),
-                                 num_reads = 3,
+                                 num_reads = 10,
                                  label='Example - Simple Ocean Programs: QUBO')
 print(sampleset)
