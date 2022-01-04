@@ -15,6 +15,8 @@ from datetime import datetime
 from dimod import utilities
 from dwave_reverse.KDMGenerator import KDMGenerator
 
+from timeit import default_timer as timer
+
 
 
 class DwaveReverse(object):
@@ -30,6 +32,22 @@ class DwaveReverse(object):
         Constructor
         '''
         self.lastframe = None
+
+    @staticmethod
+    def computeMetrics(Q):
+        print('\n>>>>#Coefficients: ' + str(len(Q[0])))
+        
+        variables = []
+        for pair in Q[0]:
+            if pair[0] not in variables:
+                variables.append(pair[0])
+            if pair[1] not in variables:
+                variables.append(pair[1])
+        
+        print('\n>>>>#Variables: ' + str(len(variables)))
+        print(variables)
+        
+        print(Q)
 
     @staticmethod
     def quboToH(Q):
@@ -55,6 +73,9 @@ class DwaveReverse(object):
         H += (("+" + str(Q[1])) if Q[1] > 0 else "")
         
         print(H)
+        
+        DwaveReverse.computeMetrics(Q)
+        
         return H; 
     
     @staticmethod
@@ -74,6 +95,7 @@ class DwaveReverse(object):
     # sample in dimod
     @staticmethod
     def getQUBOfromBQM (vars):
+        print('\n>>>>Type: BQM')
         bqm = vars['bqm']
         QUBO = bqm.to_qubo()
         return QUBO
@@ -81,12 +103,14 @@ class DwaveReverse(object):
     # sample_qubo in dwave
     @staticmethod
     def getQUBOfromTupleWithoutOffset(vars):  
+        print('\n>>>>Type: TupleWithoutOffset')
         QUBO = (vars['Q'], 0)
         return QUBO
     
     # sample_ising in dimod
     @staticmethod
     def getQUBOfromIsing (vars):
+        print('\n>>>>Type: Ising')
         h = vars['h']
         J = vars['J']
         print(h)
@@ -125,14 +149,18 @@ class DwaveReverse(object):
         
         if event == 'call':
             
+            start = timer()
             
-            #trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno) + "_" + datetime.now().strftime("%Y%m%d_%H%M%S")
-            trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno)
+            trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno) + "_" + datetime.now().strftime("%Y%m%d_%H%M%S")
+            #trace_name = (vars['self'].__class__.__qualname__ if 'self' in vars.keys() else '') + "." + function_name + "." + str(frame.f_lineno)
             #print(trace_name);
             
             QUBO = None
             
-            if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__.__contains__("dimod"):
+            if frame.f_code.co_name in ('sample', ):
+                print(vars['self'].__class__.__module__)
+            
+            if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__ in ("dwave.system.composites.embedding", "dwave.system.samplers.leap_hybrid_sampler", "neal.sampler",):
                 QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromBQM, vars)
             elif frame.f_code.co_name in ('sample_qubo', ) and vars['self'].__class__.__module__.__contains__("dwave"):
                 QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromTupleWithoutOffset, vars)
@@ -142,9 +170,18 @@ class DwaveReverse(object):
             
             if QUBO is not None:
                 H = DwaveReverse.quboToH(QUBO)
-                KDMGenerator().generateKDM(H, trace_name)
-                H = DwaveReverse.generateHinMathPlot(H, trace_name)
                 print(H)
+                #Hm = DwaveReverse.generateHinMathPlot(H, trace_name)
+                end = timer()
+                
+                print('>>>>  H time: ' + str(end-start))
+                print(H)
+                
+                start = timer()
+                KDMGenerator().generateKDM(H, trace_name)
+                end = timer()
+                print('>>>>KDM time: ' + str(end-start))
+                
             # else:
             #     source_lines, starting_line_no = inspect.getsourcelines(frame.f_code)
             #     loc = f"{function_name}:{lineno} {source_lines[lineno - starting_line_no].rstrip()}"

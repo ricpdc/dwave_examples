@@ -190,8 +190,8 @@ class KDMGenerator(object):
         
         
         
-def main():
-    KDMGenerator().generateKDM('H=1*b+1*k+2*a*c-2*a*k-2*b*c', 'test')
-    
-
-main()
+# def main():
+#     KDMGenerator().generateKDM('H=1*b+1*k+2*a*c-2*a*k-2*b*c', 'test')
+#
+#
+# main()
