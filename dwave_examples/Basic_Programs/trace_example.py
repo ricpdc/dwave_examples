@@ -11,8 +11,10 @@ import inspect
 import matplotlib.pyplot as plt
 from matplotlib.mathtext import math_to_image
  
+from sympy import *
 
-
+import xml.dom.minidom
+import re
 
 
 def factorial(num):
@@ -58,10 +60,46 @@ math_to_image(exp, "test.svg", dpi=300, format='svg')
 math_to_image(exp, "test.png", dpi=300, format='png')
 
 
-
-
-
 print("\n5!=",factorial(5))
+
+H, a, b, c, k = symbols('H a b c k')
+init_printing(use_unicode=True)
+
+H = '-2.0*a*k-2.0*c*b+2.0*c*a+1.0*b+1.0*k+1.0'
+
+H=H.replace('a', '(1-a)')
+H=H.replace('b', '(1-b)')
+H=H.replace('c', '(1-c)')
+H=H.replace('k', '(1-k)')
+
+print(H)
+
+
+print(factor(H))
+
+
+file = './kdm/general_program_qubo.py.kdm'
+
+pretty_xml_as_string = xml.dom.minidom.parse(file).toprettyxml()
+        
+print('\n\n\nBEFORE\n\n\n' + pretty_xml_as_string)
+
+z = re.match(r"(\n\t+)+",  pretty_xml_as_string)
+
+if z:
+    print('Found a match!')
+    print((z.groups()))
+    
+
+pretty_xml_as_string = re.sub(r"(\n\t+)+", "", pretty_xml_as_string)
+pretty_xml_as_string = re.sub(r"\n", "", pretty_xml_as_string)
+
+print('\n\n\nAFTER\n\n\n' + pretty_xml_as_string)
+
+open(file, "w+", newline='', encoding='utf-8').write(pretty_xml_as_string)
+
+
+
 
 
 
