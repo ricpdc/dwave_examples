@@ -1,0 +1,2 @@
+class name	function name	function line	type	#variables	#coefficients	time H text (s)	time H image (s)	Time H Total (s)	Time KDM (s)
+LeapHybridSampler	sample	181	QUBO	33	231	0.0006999999999948159	1.1999999998124622e-06	36.692481	0.1308265999999989
