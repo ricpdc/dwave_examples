@@ -1,0 +1,3 @@
+class name	function name	function line	type	#variables	#coefficients	time H text (s)	time H image (s)	Time H Total (s)	Time KDM (s)
+EmbeddingComposite	sample_qubo	268	TupleWithoutOffset	40	820	0.0026389000000008878	1.5000000033182914e-06	20.7564661	0.8666303999999982
+EmbeddingComposite	sample	149	QUBO	40	820	0.012640799999999786	2.2999999984563146e-06	20.354043099999995	1.3422918999999993

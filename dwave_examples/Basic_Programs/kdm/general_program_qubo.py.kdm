@@ -1,77 +1,77 @@
-<kdm:Segment xmlns:kdm="http://www.omg.org/spec/KDM/20160201/kdm" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" name="EmbeddingComposite20220405_125531">
+<kdm:Segment xmlns:kdm="http://www.omg.org/spec/KDM/20160201/kdm" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" name="EmbeddingComposite20220406_174949">
   <model xmi:id="id.1" xmi:type="code:CodeModel">
     <codeElement xmi:id="id.id.2" xmi:type="code:CodeAsembly">
-      <codeElement kind="regular" name="EmbeddingComposite.sample_qubo.266" xmi:id="id.3" xmi:type="code:CallableUnit">
-        <entryFlow from="id.4" to="id.5" xmi:id="id.4"/>
-        <codeElement kind="compound" name="H" xmi:id="id.5" xmi:type="action:ActionElement">
-          <source snippet="H = 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k" xmi:id="id.6"/>
-          <codeElement kind="Multiply" name=" 1.0*a*c " xmi:id="id.7" xmi:type="action:ActionElement">
-            <codeElement from="id.7" to="id.8" xmi:id="id.9" xmi:type="action:Reads"/>
-            <codeElement from="id.7" to="id.10" xmi:id="id.11" xmi:type="action:Reads"/>
-            <codeElement from="id.7" to="id.12" xmi:id="id.13" xmi:type="action:Reads"/>
-            <codeElement from="id.7" to="id.14" xmi:id="id.15" xmi:type="action:Writes"/>
+      <codeElement xmi:id="id.3" xmi:type="code:CallableUnit" kind="regular" name="EmbeddingComposite.sample_qubo.268">
+        <entryFlow xmi:id="id.4" from="id.4" to="id.5"/>
+        <codeElement xmi:id="id.5" xmi:type="action:ActionElement" kind="compound" name="H">
+          <source xmi:id="id.6" snippet="H = 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k"/>
+          <codeElement xmi:id="id.7" xmi:type="action:ActionElement" kind="Multiply" name=" 1.0*a*c ">
+            <codeElement xmi:id="id.9" xmi:type="action:Reads" from="id.7" to="id.8"/>
+            <codeElement xmi:id="id.11" xmi:type="action:Reads" from="id.7" to="id.10"/>
+            <codeElement xmi:id="id.13" xmi:type="action:Reads" from="id.7" to="id.12"/>
+            <codeElement xmi:id="id.15" xmi:type="action:Writes" from="id.7" to="id.14"/>
           </codeElement>
-          <codeElement name=" 1.0" xmi:id="id.8" xmi:type="code:Value"/>
-          <codeElement name="a" xmi:id="id.10" xmi:type="code:StorableUnit"/>
-          <codeElement name="c " xmi:id="id.12" xmi:type="code:StorableUnit"/>
-          <codeElement kind="register" name="multiply_ 1.0*a*c " xmi:id="id.14" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Multiply" name=" 1.0*a*k " xmi:id="id.16" xmi:type="action:ActionElement">
-            <codeElement from="id.16" to="id.8" xmi:id="id.17" xmi:type="action:Reads"/>
-            <codeElement from="id.16" to="id.10" xmi:id="id.18" xmi:type="action:Reads"/>
-            <codeElement from="id.16" to="id.19" xmi:id="id.20" xmi:type="action:Reads"/>
-            <codeElement from="id.16" to="id.21" xmi:id="id.22" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.8" xmi:type="code:Value" name=" 1.0"/>
+          <codeElement xmi:id="id.10" xmi:type="code:StorableUnit" name="a"/>
+          <codeElement xmi:id="id.12" xmi:type="code:StorableUnit" name="c "/>
+          <codeElement xmi:id="id.14" xmi:type="code:StorableUnit" kind="register" name="multiply_ 1.0*a*c "/>
+          <codeElement xmi:id="id.16" xmi:type="action:ActionElement" kind="Multiply" name=" 1.0*a*k ">
+            <codeElement xmi:id="id.17" xmi:type="action:Reads" from="id.16" to="id.8"/>
+            <codeElement xmi:id="id.18" xmi:type="action:Reads" from="id.16" to="id.10"/>
+            <codeElement xmi:id="id.20" xmi:type="action:Reads" from="id.16" to="id.19"/>
+            <codeElement xmi:id="id.22" xmi:type="action:Writes" from="id.16" to="id.21"/>
           </codeElement>
-          <codeElement name="k " xmi:id="id.19" xmi:type="code:StorableUnit"/>
-          <codeElement kind="register" name="multiply_ 1.0*a*k " xmi:id="id.21" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Subtract" name="+ 1.0*a*c - 1.0*a*k " xmi:id="id.23" xmi:type="action:ActionElement">
-            <codeElement from="id.23" to="id.14" xmi:id="id.24" xmi:type="action:Reads"/>
-            <codeElement from="id.23" to="id.21" xmi:id="id.25" xmi:type="action:Reads"/>
-            <codeElement from="id.23" to="id.26" xmi:id="id.27" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.19" xmi:type="code:StorableUnit" name="k "/>
+          <codeElement xmi:id="id.21" xmi:type="code:StorableUnit" kind="register" name="multiply_ 1.0*a*k "/>
+          <codeElement xmi:id="id.23" xmi:type="action:ActionElement" kind="Subtract" name="+ 1.0*a*c - 1.0*a*k ">
+            <codeElement xmi:id="id.24" xmi:type="action:Reads" from="id.23" to="id.14"/>
+            <codeElement xmi:id="id.25" xmi:type="action:Reads" from="id.23" to="id.21"/>
+            <codeElement xmi:id="id.27" xmi:type="action:Writes" from="id.23" to="id.26"/>
           </codeElement>
-          <codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k " xmi:id="id.26" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Multiply" name=" 1.0*b*c " xmi:id="id.28" xmi:type="action:ActionElement">
-            <codeElement from="id.28" to="id.8" xmi:id="id.29" xmi:type="action:Reads"/>
-            <codeElement from="id.28" to="id.30" xmi:id="id.31" xmi:type="action:Reads"/>
-            <codeElement from="id.28" to="id.12" xmi:id="id.32" xmi:type="action:Reads"/>
-            <codeElement from="id.28" to="id.33" xmi:id="id.34" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.26" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k "/>
+          <codeElement xmi:id="id.28" xmi:type="action:ActionElement" kind="Multiply" name=" 1.0*b*c ">
+            <codeElement xmi:id="id.29" xmi:type="action:Reads" from="id.28" to="id.8"/>
+            <codeElement xmi:id="id.31" xmi:type="action:Reads" from="id.28" to="id.30"/>
+            <codeElement xmi:id="id.32" xmi:type="action:Reads" from="id.28" to="id.12"/>
+            <codeElement xmi:id="id.34" xmi:type="action:Writes" from="id.28" to="id.33"/>
           </codeElement>
-          <codeElement name="b" xmi:id="id.30" xmi:type="code:StorableUnit"/>
-          <codeElement kind="register" name="multiply_ 1.0*b*c " xmi:id="id.33" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Subtract" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c " xmi:id="id.35" xmi:type="action:ActionElement">
-            <codeElement from="id.35" to="id.26" xmi:id="id.36" xmi:type="action:Reads"/>
-            <codeElement from="id.35" to="id.33" xmi:id="id.37" xmi:type="action:Reads"/>
-            <codeElement from="id.35" to="id.38" xmi:id="id.39" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.30" xmi:type="code:StorableUnit" name="b"/>
+          <codeElement xmi:id="id.33" xmi:type="code:StorableUnit" kind="register" name="multiply_ 1.0*b*c "/>
+          <codeElement xmi:id="id.35" xmi:type="action:ActionElement" kind="Subtract" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c ">
+            <codeElement xmi:id="id.36" xmi:type="action:Reads" from="id.35" to="id.26"/>
+            <codeElement xmi:id="id.37" xmi:type="action:Reads" from="id.35" to="id.33"/>
+            <codeElement xmi:id="id.39" xmi:type="action:Writes" from="id.35" to="id.38"/>
           </codeElement>
-          <codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c " xmi:id="id.38" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Multiply" name=" 0.5*b " xmi:id="id.40" xmi:type="action:ActionElement">
-            <codeElement from="id.40" to="id.41" xmi:id="id.42" xmi:type="action:Reads"/>
-            <codeElement from="id.40" to="id.43" xmi:id="id.44" xmi:type="action:Reads"/>
-            <codeElement from="id.40" to="id.45" xmi:id="id.46" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.38" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c "/>
+          <codeElement xmi:id="id.40" xmi:type="action:ActionElement" kind="Multiply" name=" 0.5*b ">
+            <codeElement xmi:id="id.42" xmi:type="action:Reads" from="id.40" to="id.41"/>
+            <codeElement xmi:id="id.44" xmi:type="action:Reads" from="id.40" to="id.43"/>
+            <codeElement xmi:id="id.46" xmi:type="action:Writes" from="id.40" to="id.45"/>
           </codeElement>
-          <codeElement name=" 0.5" xmi:id="id.41" xmi:type="code:Value"/>
-          <codeElement name="b " xmi:id="id.43" xmi:type="code:StorableUnit"/>
-          <codeElement kind="register" name="multiply_ 0.5*b " xmi:id="id.45" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b " xmi:id="id.47" xmi:type="action:ActionElement">
-            <codeElement from="id.47" to="id.38" xmi:id="id.48" xmi:type="action:Reads"/>
-            <codeElement from="id.47" to="id.45" xmi:id="id.49" xmi:type="action:Reads"/>
-            <codeElement from="id.47" to="id.50" xmi:id="id.51" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.41" xmi:type="code:Value" name=" 0.5"/>
+          <codeElement xmi:id="id.43" xmi:type="code:StorableUnit" name="b "/>
+          <codeElement xmi:id="id.45" xmi:type="code:StorableUnit" kind="register" name="multiply_ 0.5*b "/>
+          <codeElement xmi:id="id.47" xmi:type="action:ActionElement" kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b ">
+            <codeElement xmi:id="id.48" xmi:type="action:Reads" from="id.47" to="id.38"/>
+            <codeElement xmi:id="id.49" xmi:type="action:Reads" from="id.47" to="id.45"/>
+            <codeElement xmi:id="id.51" xmi:type="action:Writes" from="id.47" to="id.50"/>
           </codeElement>
-          <codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b " xmi:id="id.50" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Multiply" name=" 0.5*k" xmi:id="id.52" xmi:type="action:ActionElement">
-            <codeElement from="id.52" to="id.41" xmi:id="id.53" xmi:type="action:Reads"/>
-            <codeElement from="id.52" to="id.54" xmi:id="id.55" xmi:type="action:Reads"/>
-            <codeElement from="id.52" to="id.56" xmi:id="id.57" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.50" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b "/>
+          <codeElement xmi:id="id.52" xmi:type="action:ActionElement" kind="Multiply" name=" 0.5*k">
+            <codeElement xmi:id="id.53" xmi:type="action:Reads" from="id.52" to="id.41"/>
+            <codeElement xmi:id="id.55" xmi:type="action:Reads" from="id.52" to="id.54"/>
+            <codeElement xmi:id="id.57" xmi:type="action:Writes" from="id.52" to="id.56"/>
           </codeElement>
-          <codeElement name="k" xmi:id="id.54" xmi:type="code:StorableUnit"/>
-          <codeElement kind="register" name="multiply_ 0.5*k" xmi:id="id.56" xmi:type="code:StorableUnit"/>
-          <codeElement kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k" xmi:id="id.58" xmi:type="action:ActionElement">
-            <codeElement from="id.58" to="id.50" xmi:id="id.59" xmi:type="action:Reads"/>
-            <codeElement from="id.58" to="id.56" xmi:id="id.60" xmi:type="action:Reads"/>
-            <codeElement from="id.58" to="id.61" xmi:id="id.62" xmi:type="action:Writes"/>
+          <codeElement xmi:id="id.54" xmi:type="code:StorableUnit" name="k"/>
+          <codeElement xmi:id="id.56" xmi:type="code:StorableUnit" kind="register" name="multiply_ 0.5*k"/>
+          <codeElement xmi:id="id.58" xmi:type="action:ActionElement" kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k">
+            <codeElement xmi:id="id.59" xmi:type="action:Reads" from="id.58" to="id.50"/>
+            <codeElement xmi:id="id.60" xmi:type="action:Reads" from="id.58" to="id.56"/>
+            <codeElement xmi:id="id.62" xmi:type="action:Writes" from="id.58" to="id.61"/>
           </codeElement>
-          <codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k" xmi:id="id.61" xmi:type="code:StorableUnit"/>
+          <codeElement xmi:id="id.61" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k"/>
         </codeElement>
       </codeElement>
-    <codeElement kind="regular" name="EmbeddingComposite.sample.149" xmi:id="id.1" xmi:type="code:CallableUnit"><entryFlow from="id.2" to="id.3" xmi:id="id.2"/><codeElement kind="compound" name="H" xmi:id="id.3" xmi:type="action:ActionElement"><source snippet="H = 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k" xmi:id="id.4"/><codeElement kind="Multiply" name=" 1.0*a*c " xmi:id="id.5" xmi:type="action:ActionElement"><codeElement from="id.5" to="id.6" xmi:id="id.7" xmi:type="action:Reads"/><codeElement from="id.5" to="id.8" xmi:id="id.9" xmi:type="action:Reads"/><codeElement from="id.5" to="id.10" xmi:id="id.11" xmi:type="action:Reads"/><codeElement from="id.5" to="id.12" xmi:id="id.13" xmi:type="action:Writes"/></codeElement><codeElement name=" 1.0" xmi:id="id.6" xmi:type="code:Value"/><codeElement name="a" xmi:id="id.8" xmi:type="code:StorableUnit"/><codeElement name="c " xmi:id="id.10" xmi:type="code:StorableUnit"/><codeElement kind="register" name="multiply_ 1.0*a*c " xmi:id="id.12" xmi:type="code:StorableUnit"/><codeElement kind="Multiply" name=" 1.0*a*k " xmi:id="id.14" xmi:type="action:ActionElement"><codeElement from="id.14" to="id.6" xmi:id="id.15" xmi:type="action:Reads"/><codeElement from="id.14" to="id.8" xmi:id="id.16" xmi:type="action:Reads"/><codeElement from="id.14" to="id.17" xmi:id="id.18" xmi:type="action:Reads"/><codeElement from="id.14" to="id.19" xmi:id="id.20" xmi:type="action:Writes"/></codeElement><codeElement name="k " xmi:id="id.17" xmi:type="code:StorableUnit"/><codeElement kind="register" name="multiply_ 1.0*a*k " xmi:id="id.19" xmi:type="code:StorableUnit"/><codeElement kind="Subtract" name="+ 1.0*a*c - 1.0*a*k " xmi:id="id.21" xmi:type="action:ActionElement"><codeElement from="id.21" to="id.12" xmi:id="id.22" xmi:type="action:Reads"/><codeElement from="id.21" to="id.19" xmi:id="id.23" xmi:type="action:Reads"/><codeElement from="id.21" to="id.24" xmi:id="id.25" xmi:type="action:Writes"/></codeElement><codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k " xmi:id="id.24" xmi:type="code:StorableUnit"/><codeElement kind="Multiply" name=" 1.0*b*c " xmi:id="id.26" xmi:type="action:ActionElement"><codeElement from="id.26" to="id.6" xmi:id="id.27" xmi:type="action:Reads"/><codeElement from="id.26" to="id.28" xmi:id="id.29" xmi:type="action:Reads"/><codeElement from="id.26" to="id.10" xmi:id="id.30" xmi:type="action:Reads"/><codeElement from="id.26" to="id.31" xmi:id="id.32" xmi:type="action:Writes"/></codeElement><codeElement name="b" xmi:id="id.28" xmi:type="code:StorableUnit"/><codeElement kind="register" name="multiply_ 1.0*b*c " xmi:id="id.31" xmi:type="code:StorableUnit"/><codeElement kind="Subtract" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c " xmi:id="id.33" xmi:type="action:ActionElement"><codeElement from="id.33" to="id.24" xmi:id="id.34" xmi:type="action:Reads"/><codeElement from="id.33" to="id.31" xmi:id="id.35" xmi:type="action:Reads"/><codeElement from="id.33" to="id.36" xmi:id="id.37" xmi:type="action:Writes"/></codeElement><codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c " xmi:id="id.36" xmi:type="code:StorableUnit"/><codeElement kind="Multiply" name=" 0.5*b " xmi:id="id.38" xmi:type="action:ActionElement"><codeElement from="id.38" to="id.39" xmi:id="id.40" xmi:type="action:Reads"/><codeElement from="id.38" to="id.41" xmi:id="id.42" xmi:type="action:Reads"/><codeElement from="id.38" to="id.43" xmi:id="id.44" xmi:type="action:Writes"/></codeElement><codeElement name=" 0.5" xmi:id="id.39" xmi:type="code:Value"/><codeElement name="b " xmi:id="id.41" xmi:type="code:StorableUnit"/><codeElement kind="register" name="multiply_ 0.5*b " xmi:id="id.43" xmi:type="code:StorableUnit"/><codeElement kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b " xmi:id="id.45" xmi:type="action:ActionElement"><codeElement from="id.45" to="id.36" xmi:id="id.46" xmi:type="action:Reads"/><codeElement from="id.45" to="id.43" xmi:id="id.47" xmi:type="action:Reads"/><codeElement from="id.45" to="id.48" xmi:id="id.49" xmi:type="action:Writes"/></codeElement><codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b " xmi:id="id.48" xmi:type="code:StorableUnit"/><codeElement kind="Multiply" name=" 0.5*k" xmi:id="id.50" xmi:type="action:ActionElement"><codeElement from="id.50" to="id.39" xmi:id="id.51" xmi:type="action:Reads"/><codeElement from="id.50" to="id.52" xmi:id="id.53" xmi:type="action:Reads"/><codeElement from="id.50" to="id.54" xmi:id="id.55" xmi:type="action:Writes"/></codeElement><codeElement name="k" xmi:id="id.52" xmi:type="code:StorableUnit"/><codeElement kind="register" name="multiply_ 0.5*k" xmi:id="id.54" xmi:type="code:StorableUnit"/><codeElement kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k" xmi:id="id.56" xmi:type="action:ActionElement"><codeElement from="id.56" to="id.48" xmi:id="id.57" xmi:type="action:Reads"/><codeElement from="id.56" to="id.54" xmi:id="id.58" xmi:type="action:Reads"/><codeElement from="id.56" to="id.59" xmi:id="id.60" xmi:type="action:Writes"/></codeElement><codeElement kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k" xmi:id="id.59" xmi:type="code:StorableUnit"/></codeElement></codeElement></codeElement>
+    <codeElement xmi:id="id.1" xmi:type="code:CallableUnit" kind="regular" name="EmbeddingComposite.sample.149"><entryFlow xmi:id="id.2" from="id.2" to="id.3"/><codeElement xmi:id="id.3" xmi:type="action:ActionElement" kind="compound" name="H"><source xmi:id="id.4" snippet="H = 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k"/><codeElement xmi:id="id.5" xmi:type="action:ActionElement" kind="Multiply" name=" 1.0*a*c "><codeElement xmi:id="id.7" xmi:type="action:Reads" from="id.5" to="id.6"/><codeElement xmi:id="id.9" xmi:type="action:Reads" from="id.5" to="id.8"/><codeElement xmi:id="id.11" xmi:type="action:Reads" from="id.5" to="id.10"/><codeElement xmi:id="id.13" xmi:type="action:Writes" from="id.5" to="id.12"/></codeElement><codeElement xmi:id="id.6" xmi:type="code:Value" name=" 1.0"/><codeElement xmi:id="id.8" xmi:type="code:StorableUnit" name="a"/><codeElement xmi:id="id.10" xmi:type="code:StorableUnit" name="c "/><codeElement xmi:id="id.12" xmi:type="code:StorableUnit" kind="register" name="multiply_ 1.0*a*c "/><codeElement xmi:id="id.14" xmi:type="action:ActionElement" kind="Multiply" name=" 1.0*a*k "><codeElement xmi:id="id.15" xmi:type="action:Reads" from="id.14" to="id.6"/><codeElement xmi:id="id.16" xmi:type="action:Reads" from="id.14" to="id.8"/><codeElement xmi:id="id.18" xmi:type="action:Reads" from="id.14" to="id.17"/><codeElement xmi:id="id.20" xmi:type="action:Writes" from="id.14" to="id.19"/></codeElement><codeElement xmi:id="id.17" xmi:type="code:StorableUnit" name="k "/><codeElement xmi:id="id.19" xmi:type="code:StorableUnit" kind="register" name="multiply_ 1.0*a*k "/><codeElement xmi:id="id.21" xmi:type="action:ActionElement" kind="Subtract" name="+ 1.0*a*c - 1.0*a*k "><codeElement xmi:id="id.22" xmi:type="action:Reads" from="id.21" to="id.12"/><codeElement xmi:id="id.23" xmi:type="action:Reads" from="id.21" to="id.19"/><codeElement xmi:id="id.25" xmi:type="action:Writes" from="id.21" to="id.24"/></codeElement><codeElement xmi:id="id.24" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k "/><codeElement xmi:id="id.26" xmi:type="action:ActionElement" kind="Multiply" name=" 1.0*b*c "><codeElement xmi:id="id.27" xmi:type="action:Reads" from="id.26" to="id.6"/><codeElement xmi:id="id.29" xmi:type="action:Reads" from="id.26" to="id.28"/><codeElement xmi:id="id.30" xmi:type="action:Reads" from="id.26" to="id.10"/><codeElement xmi:id="id.32" xmi:type="action:Writes" from="id.26" to="id.31"/></codeElement><codeElement xmi:id="id.28" xmi:type="code:StorableUnit" name="b"/><codeElement xmi:id="id.31" xmi:type="code:StorableUnit" kind="register" name="multiply_ 1.0*b*c "/><codeElement xmi:id="id.33" xmi:type="action:ActionElement" kind="Subtract" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c "><codeElement xmi:id="id.34" xmi:type="action:Reads" from="id.33" to="id.24"/><codeElement xmi:id="id.35" xmi:type="action:Reads" from="id.33" to="id.31"/><codeElement xmi:id="id.37" xmi:type="action:Writes" from="id.33" to="id.36"/></codeElement><codeElement xmi:id="id.36" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c "/><codeElement xmi:id="id.38" xmi:type="action:ActionElement" kind="Multiply" name=" 0.5*b "><codeElement xmi:id="id.40" xmi:type="action:Reads" from="id.38" to="id.39"/><codeElement xmi:id="id.42" xmi:type="action:Reads" from="id.38" to="id.41"/><codeElement xmi:id="id.44" xmi:type="action:Writes" from="id.38" to="id.43"/></codeElement><codeElement xmi:id="id.39" xmi:type="code:Value" name=" 0.5"/><codeElement xmi:id="id.41" xmi:type="code:StorableUnit" name="b "/><codeElement xmi:id="id.43" xmi:type="code:StorableUnit" kind="register" name="multiply_ 0.5*b "/><codeElement xmi:id="id.45" xmi:type="action:ActionElement" kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b "><codeElement xmi:id="id.46" xmi:type="action:Reads" from="id.45" to="id.36"/><codeElement xmi:id="id.47" xmi:type="action:Reads" from="id.45" to="id.43"/><codeElement xmi:id="id.49" xmi:type="action:Writes" from="id.45" to="id.48"/></codeElement><codeElement xmi:id="id.48" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b "/><codeElement xmi:id="id.50" xmi:type="action:ActionElement" kind="Multiply" name=" 0.5*k"><codeElement xmi:id="id.51" xmi:type="action:Reads" from="id.50" to="id.39"/><codeElement xmi:id="id.53" xmi:type="action:Reads" from="id.50" to="id.52"/><codeElement xmi:id="id.55" xmi:type="action:Writes" from="id.50" to="id.54"/></codeElement><codeElement xmi:id="id.52" xmi:type="code:StorableUnit" name="k"/><codeElement xmi:id="id.54" xmi:type="code:StorableUnit" kind="register" name="multiply_ 0.5*k"/><codeElement xmi:id="id.56" xmi:type="action:ActionElement" kind="Add" name="+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k"><codeElement xmi:id="id.57" xmi:type="action:Reads" from="id.56" to="id.48"/><codeElement xmi:id="id.58" xmi:type="action:Reads" from="id.56" to="id.54"/><codeElement xmi:id="id.60" xmi:type="action:Writes" from="id.56" to="id.59"/></codeElement><codeElement xmi:id="id.59" xmi:type="code:StorableUnit" kind="register" name="accumulated_+ 1.0*a*c - 1.0*a*k - 1.0*b*c + 0.5*b + 0.5*k"/></codeElement></codeElement></codeElement>
   </model>
 </kdm:Segment>
