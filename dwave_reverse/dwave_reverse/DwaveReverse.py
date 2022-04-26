@@ -12,6 +12,7 @@ import os
 from sympy import *
 import ntpath
 import csv
+import re
 
 
 from datetime import datetime
@@ -103,15 +104,20 @@ class DwaveReverse(object):
             coeff = Q[0][pair]/2.0
             coefficients.append(coeff)
             H += (str(coeff) + "*")        
+            regex = r"[\(|\)|\[|\]|\{|\}| ]"
                              
             if pair[0] == pair[1]:
                 var = str(pair[0]).lower() if isinstance(pair[0], str) else ('a' + str(pair[0]))
+                var = re.sub(regex, "", var.replace(",", ""))
                 symbols(var)
                 variables.add(var) 
                 H += '(1-'+var+')'
             else:
                 var1 = str(pair[0]).lower() if isinstance(pair[0], str) else ('a' + str(pair[0])) 
                 var2 = str(pair[1]).lower() if isinstance(pair[1], str) else ('a' + str(pair[1])) 
+                var1 = re.sub(regex, "", var1.replace(",", ""))
+                var2 = re.sub(regex, "", var2.replace(",", ""))
+                
                 symbols(var1)
                 symbols(var2)                
                 variables.add(var1)
@@ -129,7 +135,11 @@ class DwaveReverse(object):
         print('\n>>>>#Variables: ' + str(len(variables)))
         print(variables)
         
-        H=simplify(H)
+        print('alive: ' + H)
+        try:
+            H=simplify(H)
+        except:
+            print('Error in simplification')
         H = 'H = ' + str(H)
         
                
