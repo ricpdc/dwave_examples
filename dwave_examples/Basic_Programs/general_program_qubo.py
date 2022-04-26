@@ -22,6 +22,8 @@
 # Import the functions and packages that are used
 from dwave.system import EmbeddingComposite, DWaveSampler
 
+import dwave.system
+import dwave.inspector
 
 ''' Lines for dynamic analysis of dwave functions '''
 from dwave_reverse.DwaveReverse import DwaveReverse
@@ -47,3 +49,5 @@ sampleset = sampler.sample_qubo(problemDefinition(),
                                  num_reads = 10,
                                  label='Example - Simple Ocean Programs: QUBO')
 print(sampleset)
+
+dwave.inspector.show(sampleset)

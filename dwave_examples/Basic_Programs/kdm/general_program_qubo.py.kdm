@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <kdm:Segment xmlns:kdm="http://www.omg.org/spec/KDM/20160201/kdm" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" name="EmbeddingComposite20220406_174949">
+=======
+<kdm:Segment xmlns:kdm="http://www.omg.org/spec/KDM/20160201/kdm" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" name="EmbeddingComposite20220426_094200">
+>>>>>>> refs/heads/main
   <model xmi:id="id.1" xmi:type="code:CodeModel">
     <codeElement xmi:id="id.id.2" xmi:type="code:CodeAsembly">
       <codeElement xmi:id="id.3" xmi:type="code:CallableUnit" kind="regular" name="EmbeddingComposite.sample_qubo.268">

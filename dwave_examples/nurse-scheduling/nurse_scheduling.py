@@ -26,6 +26,9 @@ from collections import defaultdict
 from copy import deepcopy
 import matplotlib
 
+import dwave.system
+import dwave.inspector
+
 ''' Lines for dynamic analysis of dwave functions '''
 from dwave_reverse.DwaveReverse import DwaveReverse
 import sys
@@ -184,6 +187,9 @@ bqm = BinaryQuadraticModel.from_qubo(Q, offset=e_offset)
 print("\nSending problem to hybrid sampler...")
 sampler = LeapHybridSampler()
 results = sampler.sample(bqm, label='Example - Nurse Scheduling')
+
+
+# dwave.inspector.show(Q, results.first)
 
 # Get the results
 smpl = results.first.sample
