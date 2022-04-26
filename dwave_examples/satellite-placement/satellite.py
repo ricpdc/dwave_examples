@@ -48,6 +48,9 @@ import sys
 sys.settrace(DwaveReverse.traceit)
 ''' End of dynamic analysis of dwave functions '''
 
+print(sys.getrecursionlimit()) # Prints 1000
+
+print(sys.setrecursionlimit(10000))
 
 # For independent events, Pr(at least one event)=1−Pr(none of the events)
 # https://math.stackexchange.com/questions/85849/calculating-the-probability-that-at-least-one-of-a-series-of-events-will-happen
@@ -109,6 +112,7 @@ if args.solver == 'hss':
                           label='Example - Satellite Placement').aggregate()
 elif args.solver == 'neal':
     sampleset = neal.Neal().sample(bqm, num_reads=100).aggregate()
+    print(sampleset)
 else:
     print("satellite.py: Unrecognized solver")
     exit(1)

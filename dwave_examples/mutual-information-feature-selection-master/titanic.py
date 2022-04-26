@@ -26,6 +26,12 @@ import pandas as pd
 import dimod
 from dwave.system import DWaveCliqueSampler
 
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
+
 
 # Define MI calculations
 def prob(dataset):
