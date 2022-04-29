@@ -221,6 +221,24 @@ class DwaveReverse(object):
         # Q = bqm.to_qubo()
         return QUBO
     
+    
+    # sample_dqm in LeapHybridDQMSampler
+    @staticmethod
+    def getQUBOfromDQM (vars):
+        print("DQM: " + str(vars))
+        print("DQM problem definition not supported yet")
+        return None
+    
+    # sample_cqm in LeapHybridDQMSampler
+    @staticmethod
+    def getQUBOfromCQM (vars):
+        print("CQM: " + str(vars))
+        cqm = vars['cqm']
+        
+        print("CQM: \nvariables: " + str(cqm.variables) + "\nproperties: " + str(cqm.properties()) )
+        print("CQM problem definition not supported yet")
+        return None
+    
     @staticmethod
     def getQUBO(function, vars):
         
@@ -251,8 +269,10 @@ class DwaveReverse(object):
             time_start = timer()
             time = timer()
            
-            #trace_name = class_name + "." + function_name + "." + function_line
-            #print(trace_name);
+            # class_name = vars['self'].__class__.__qualname__ if 'self' in vars.keys() else ''
+            # function_line = str(frame.f_lineno)
+            # trace_name = class_name + "." + function_name + "." + function_line
+            # print(trace_name);
             
             QUBO = None
             type = None
@@ -260,7 +280,7 @@ class DwaveReverse(object):
             if frame.f_code.co_name in ('sample', ):
                 print(vars['self'].__class__.__module__)
             
-            if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__ in ("dwave.system.composites.embedding", "dwave.system.samplers.leap_hybrid_sampler", "neal.sampler",):
+            if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__ in ("dwave.system.composites.embedding", "dwave.system.samplers.leap_hybrid_sampler", "neal.sampler", "hybrid.reference.kerberos"):
                 type = 'QUBO'
                 time_start = timer()
                 time = timer()
@@ -275,7 +295,18 @@ class DwaveReverse(object):
                 time_start = timer()
                 time = timer()
                 QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromIsing, vars)
-            
+            elif frame.f_code.co_name in ('sample_dqm', ) and vars['self'].__class__.__module__ in ("dwave.system.samplers.leap_hybrid_sampler"):
+                type = 'DQM'
+                time_start = timer()
+                time = timer()
+                QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromDQM, vars)
+            elif frame.f_code.co_name in ('sample_cqm', ) and vars['self'].__class__.__module__ in ("dwave.system.samplers.leap_hybrid_sampler"):
+                type = 'CQM'
+                time_start = timer()
+                time = timer()
+                QUBO = DwaveReverse.getQUBO(DwaveReverse.getQUBOfromCQM, vars)   
+                
+                
             
             if QUBO is not None:
                 
