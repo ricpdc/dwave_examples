@@ -22,6 +22,14 @@ from dwave.system import EmbeddingComposite, DWaveSampler
 from utilities import get_groupings, visualize_groupings, visualize_scatterplot
 
 
+
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
+
+
 class Coordinate:
     def __init__(self, x, y):
         self.x = x
