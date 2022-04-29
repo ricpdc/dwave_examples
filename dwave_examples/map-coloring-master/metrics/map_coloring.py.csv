@@ -1,0 +1,2 @@
+class name	function name	function line	type	#variables	#coefficients	time H text (s)	time H image (s)	Time H Total (s)	Time KDM (s)
+KerberosSampler	sample	148	QUBO	52	190	0.003177100000000266	1.8999999991109462e-06	4.7170518	0.1163419999999995
