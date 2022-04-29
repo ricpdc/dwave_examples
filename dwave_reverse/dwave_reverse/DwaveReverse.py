@@ -101,22 +101,22 @@ class DwaveReverse(object):
                 H += '+'
             first = False
             
-            coeff = Q[0][pair]/2.0
-            coefficients.append(coeff)
-            H += (str(coeff) + "*")        
+            coeff = Q[0][pair]/2
+            coefficients.append("{:.2f}".format(coeff))
+            H += ("{:.2f}".format(coeff) + "*")        
             regex = r"[\(|\)|\[|\]|\{|\}| ]"
                              
             if pair[0] == pair[1]:
-                var = str(pair[0]).lower() if isinstance(pair[0], str) else ('a' + str(pair[0]))
-                var = re.sub(regex, "", var.replace(",", ""))
+                var = 'a' + (str(pair[0]).lower() if isinstance(pair[0], str) else str(pair[0]))
+                var = re.sub(regex, "", var.replace(",", "").replace("_", ""))
                 symbols(var)
                 variables.add(var) 
                 H += '(1-'+var+')'
             else:
-                var1 = str(pair[0]).lower() if isinstance(pair[0], str) else ('a' + str(pair[0])) 
-                var2 = str(pair[1]).lower() if isinstance(pair[1], str) else ('a' + str(pair[1])) 
-                var1 = re.sub(regex, "", var1.replace(",", ""))
-                var2 = re.sub(regex, "", var2.replace(",", ""))
+                var1 = 'a' + (str(pair[0]).lower() if isinstance(pair[0], str) else str(pair[0])) 
+                var2 = 'a' + (str(pair[1]).lower() if isinstance(pair[1], str) else str(pair[1]))
+                var1 = re.sub(regex, "", var1.replace(",", "").replace("_", ""))
+                var2 = re.sub(regex, "", var2.replace(",", "").replace("_", ""))
                 
                 symbols(var1)
                 symbols(var2)                
@@ -125,7 +125,7 @@ class DwaveReverse(object):
                 
                 H += ('(1-'+var1+')*(1-' + var2+')')
                 
-        H += (("+" + str(Q[1])) if Q[1] > 0 else "")
+        H += (("+" + "{:.2f}".format(Q[1])) if Q[1] > 0 else "")
         
         
         print("BQM: " + H)
@@ -135,11 +135,11 @@ class DwaveReverse(object):
         print('\n>>>>#Variables: ' + str(len(variables)))
         print(variables)
         
-        print('alive: ' + H)
+        print('H before simplification: ' + H)
         try:
             H=simplify(H)
         except:
-            print('Error in simplification')
+            print('Error in simplification!')
         H = 'H = ' + str(H)
         
                
