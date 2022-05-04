@@ -27,12 +27,6 @@ except ImportError:
     matplotlib.use("agg")
     import matplotlib.pyplot as plt
 
-''' Lines for dynamic analysis of dwave functions '''
-from dwave_reverse.DwaveReverse import DwaveReverse
-import sys
-sys.settrace(DwaveReverse.traceit)
-''' End of dynamic analysis of dwave functions '''
-
 def read_in_args():
     """Read in user specified parameters or use defaults."""
 

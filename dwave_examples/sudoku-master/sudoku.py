@@ -22,6 +22,11 @@ import copy
 from dimod.generators.constraints import combinations
 from hybrid.reference import KerberosSampler
 
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
 
 def get_label(row, col, digit):
     """Returns a string of the cell coordinates and the cell value in a
