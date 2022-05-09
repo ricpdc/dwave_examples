@@ -21,7 +21,11 @@ from pyqubo import Constraint, Array
 import neal
 from dwave.system import LeapHybridSampler
 
-
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
 # Read players rating from CSV
 column_names = ["Variable", "Player", "Position", "Rating"]
 players_df = pd.read_csv("players.csv", names=column_names)

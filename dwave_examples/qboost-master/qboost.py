@@ -23,6 +23,7 @@ from dwave.system import LeapHybridSampler
 from tabulate import tabulate
 
 
+
 class DecisionStumpClassifier:
     """Decision tree classifier that operates on a single feature with a single splitting rule.
 

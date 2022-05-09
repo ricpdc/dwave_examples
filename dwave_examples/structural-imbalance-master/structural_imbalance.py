@@ -32,6 +32,11 @@ from dwave.system import DWaveSampler, EmbeddingComposite, LeapHybridSampler
 from drawing import draw_social_network
 from mmp_network import global_signed_social_network
 
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
 
 @click.command()
 @click.option('--qpu', 'sampler_type', flag_value='qpu',

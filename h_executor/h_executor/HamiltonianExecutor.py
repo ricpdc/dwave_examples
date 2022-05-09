@@ -16,14 +16,13 @@ import os
 from glob import glob
 
 PATH = "../../dwave_examples/"
-NUM_READS = 10
+NUM_READS = 1
 
-hamiltonian_files = [y for x in os.walk(PATH) for y in glob(os.path.join(x[0], '*/hamiltonian_expressions/*.txt'))]
+#hamiltonian_files = [y for x in os.walk(PATH) for y in glob(os.path.join(x[0], '*/hamiltonian_expressions/*.txt'))]
+hamiltonian_files = {'C:/Users/LuisJN/ExtensionQuatic/dwavw/dwave_reverse/dwave_examples/qboost-master/hamiltonian_expressions/LeapHybridSampler.sample.181_20220504_132531.txt'}
 
 print("Files to be processed")
 print(hamiltonian_files)
-
-#hamiltonian_files = {'C:/Users/Alarcos/git/dwave_examples/dwave_examples/nurse-scheduling/hamiltonian_expressions/LeapHybridSampler.sample.181_20220422_170111.txt'}
 
 for file_path in hamiltonian_files:
 

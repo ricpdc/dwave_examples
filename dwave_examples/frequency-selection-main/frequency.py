@@ -27,7 +27,6 @@ from dwave.system import LeapHybridSampler
 from philadelphia import load_problem, get_forbidden_set, plot_nodes
 from utilities import check_results, get_frequencies, print_frequency_separations
 
-
 def construct_bqm(demand, nfreq, reuse_distances, penalty_coef=1.0):
     """Construct BQM for feasibility frequency assignment problem.
     

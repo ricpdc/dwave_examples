@@ -25,6 +25,11 @@ except ImportError:
 from qboost import QBoostClassifier, qboost_lambda_sweep
 from datasets import make_blob_data, get_handwritten_digits_data
 
+''' Lines for dynamic analysis of dwave functions '''
+from dwave_reverse.DwaveReverse import DwaveReverse
+import sys
+sys.settrace(DwaveReverse.traceit)
+''' End of dynamic analysis of dwave functions '''
 
 if __name__ == '__main__':
     import argparse
