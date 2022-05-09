@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
         # Solving problem on SolutionPartitioningSolver.
         solver = DBScanSolver(problem, anti_noiser = False, max_len = 25)
-        solution = solver.solve(only_one_const, order_const, solver_type = 'cpu')
+        solution = solver.solve(only_one_const, order_const, solver_type = 'qpu')
 
         # Checking if solution is correct.
         if solution == None or solution.check() == False:

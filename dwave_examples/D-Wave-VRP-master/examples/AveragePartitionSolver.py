@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
         # Solving problem on AveragePartitionSolver.
         solver = AveragePartitionSolver(problem, limit_radius)
-        solution = solver.solve(only_one_const, order_const, solver_type = 'cpu')
+        solution = solver.solve(only_one_const, order_const, solver_type = 'qpu')
 
         # Checking if solution is correct.
         if solution == None or solution.check() == False:
