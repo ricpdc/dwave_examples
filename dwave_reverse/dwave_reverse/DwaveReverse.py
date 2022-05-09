@@ -269,18 +269,19 @@ class DwaveReverse(object):
             time_start = timer()
             time = timer()
            
-            # class_name = vars['self'].__class__.__qualname__ if 'self' in vars.keys() else ''
-            # function_line = str(frame.f_lineno)
-            # trace_name = class_name + "." + function_name + "." + function_line
-            # print(trace_name);
+            
             
             QUBO = None
             type = None
             
             if frame.f_code.co_name in ('sample', ):
+                class_name = vars['self'].__class__.__qualname__ if 'self' in vars.keys() else ''
+                function_line = str(frame.f_lineno)
+                trace_name = class_name + "." + function_name + "." + function_line
+                print(trace_name);
                 print(vars['self'].__class__.__module__)
             
-            if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__ in ("dwave.system.composites.embedding", "dwave.system.samplers.leap_hybrid_sampler", "neal.sampler", "hybrid.reference.kerberos"):
+            if frame.f_code.co_name in ('sample', ) and vars['self'].__class__.__module__ in ("dwave.system.composites.embedding", "dwave.system.samplers.leap_hybrid_sampler", "neal.sampler", "hybrid.reference.kerberos", "hybrid.core"):
                 type = 'QUBO'
                 time_start = timer()
                 time = timer()
